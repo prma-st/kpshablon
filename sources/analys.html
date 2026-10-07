@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Персона — Бизнес-разбор 2026</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Анализ проекта">
+<meta property="og:description" content="Структурированный анализ проекта: аудит, аудитория, путь клиента, точки роста и рекомендации">
+<meta property="og:image" content="https://prma-st.github.io/kpshablon/covers/analys.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Анализ проекта">
+<meta name="twitter:description" content="Структурированный анализ проекта: аудит, аудитория, путь клиента, точки роста и рекомендации">
+<meta name="twitter:image" content="https://prma-st.github.io/kpshablon/covers/analys.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;600;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ═══════════════ TOKENS ═══════════════ */
+[data-theme="light"]{
+  --bg:#F2F0EB;--bg2:#FFFFFF;--bg3:#E8E5DE;
+  --ink:#0E0E0E;--ink2:#4A4A4A;--ink3:#8A8A8A;
+  --line:#D8D4CC;--line2:#C2BDB2;
+  --gold:#8C6D1F;--gold-l:#F7EED8;--gold-b:#D4A847;
+  --accent:#1A1A1A;--accent-inv:#F2F0EB;
+  --red:#B83232;--green:#1E6B42;--blue:#1C4E8A;
+  --card-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.04);
+}
+[data-theme="dark"]{
+  --bg:#0A0A0A;--bg2:#141414;--bg3:#1C1C1C;
+  --ink:#F0EDE6;--ink2:#A8A49C;--ink3:#5C5850;
+  --line:#2A2A2A;--line2:#3A3A3A;
+  --gold:#D4A847;--gold-l:#1E1808;--gold-b:#8C6D1F;
+  --accent:#F0EDE6;--accent-inv:#0A0A0A;
+  --red:#E05252;--green:#52C887;--blue:#6B9FE0;
+  --card-shadow:0 1px 3px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.3);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sans:'Golos Text',sans-serif;
+  --display:'Unbounded',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --transition:0.35s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  transition:background var(--transition),color var(--transition);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding-bottom:72px;
+}
+@media(min-width:768px){body{padding-bottom:0}}
+
+/* ═══════════════ SCROLL PROGRESS ═══════════════ */
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:var(--gold);z-index:9999;
+  transition:width .1s linear;
+}
+
+/* ═══════════════ NAV ═══════════════ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(242,240,235,.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  transition:background var(--transition),border-color var(--transition);
+  margin-top:2px;
+}
+[data-theme="dark"] header{background:rgba(10,10,10,.92)}
+.nav-wrap{
+  max-width:1440px;margin:0 auto;padding:0 40px;
+  height:52px;display:flex;align-items:center;gap:24px;
+}
+.nav-logo{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink);text-decoration:none;
+  white-space:nowrap;flex-shrink:0;
+  transition:color var(--transition);
+}
+.nav-links{
+  display:none;align-items:center;gap:2px;overflow-x:auto;
+  scrollbar-width:none;flex:1;
+}
+.nav-links::-webkit-scrollbar{display:none}
+@media(min-width:900px){.nav-links{display:flex}}
+.nav-links a{
+  font-size:11px;font-family:var(--mono);letter-spacing:.03em;
+  color:var(--ink3);text-decoration:none;
+  padding:5px 11px;border-radius:20px;white-space:nowrap;
+  transition:all .2s;
+}
+.nav-links a:hover,.nav-links a.on{
+  background:var(--accent);color:var(--accent-inv);
+}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.btn-contact{
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;background:var(--gold);
+  color:#fff;border:none;border-radius:4px;
+  padding:6px 14px;cursor:pointer;text-decoration:none;
+  transition:opacity .2s;white-space:nowrap;
+}
+.btn-contact:hover{opacity:.85}
+.btn-theme{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--bg3);border:1px solid var(--line);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:all .2s;flex-shrink:0;
+}
+.btn-theme:hover{background:var(--line)}
+
+/* ═══════════════ MOBILE BOTTOM NAV ═══════════════ */
+.mob-nav{
+  display:flex;position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:var(--bg2);border-top:1px solid var(--line);
+  padding:8px 4px 16px;gap:2px;overflow-x:auto;scrollbar-width:none;
+  transition:background var(--transition),border-color var(--transition);
+}
+.mob-nav::-webkit-scrollbar{display:none}
+@media(min-width:768px){.mob-nav{display:none}}
+.mob-nav a{
+  flex:1;min-width:60px;display:flex;flex-direction:column;
+  align-items:center;gap:3px;padding:4px 6px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink3);text-decoration:none;
+  border-radius:8px;transition:all .2s;white-space:nowrap;
+}
+.mob-nav a.on,.mob-nav a:hover{background:var(--gold-l);color:var(--gold)}
+.mob-nav a span{font-size:16px;line-height:1}
+
+/* ═══════════════ LAYOUT ═══════════════ */
+.W{max-width:1440px;margin:0 auto;padding:0 40px}
+@media(max-width:768px){.W{padding:0 16px}}
+section{padding:100px 0;border-bottom:1px solid var(--line)}
+@media(max-width:768px){section{padding:64px 0}}
+
+/* ═══════════════ SECTION HEADER ═══════════════ */
+.sh{display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;margin-bottom:56px}
+@media(max-width:600px){.sh{grid-template-columns:36px 1fr;}.sh .sh-note{display:none}}
+.sh-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink3);padding-top:8px}
+.sh-h{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(24px,3.5vw,52px);letter-spacing:-.02em;line-height:1;
+  color:var(--ink);
+}
+.sh-note{font-family:var(--mono);font-size:11px;color:var(--ink3);max-width:220px;text-align:right;line-height:1.6;padding-top:8px}
+
+/* ═══════════════ GRID ═══════════════ */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:900px){.g5{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.g3,.g2{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}}
+.cell{background:var(--bg);padding:28px 24px;transition:background var(--transition)}
+.cell:hover{background:var(--bg2)}
+.cell-dk{background:var(--ink);padding:28px 24px;color:var(--accent-inv)}
+[data-theme="dark"] .cell-dk{background:var(--bg3)}
+
+/* ═══════════════ LABELS / TAGS ═══════════════ */
+.lbl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:10px}
+.tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+.tg{background:#D4EDD9;color:var(--green)}
+.tr{background:#FAD7D4;color:var(--red)}
+.ty{background:var(--gold-l);color:var(--gold)}
+.tb{background:#D4E3F5;color:var(--blue)}
+
+/* ═══════════════ LIST ═══════════════ */
+.lst{list-style:none}
+.lst li{font-size:13px;color:var(--ink2);padding:7px 0;border-bottom:1px solid var(--line);line-height:1.55;display:flex;gap:10px}
+.lst li:last-child{border-bottom:none}
+.lst li::before{content:'—';color:var(--ink3);flex-shrink:0}
+
+/* ═══════════════ HERO ═══════════════ */
+.hero{padding:140px 0 80px;border-bottom:1px solid var(--line)}
+@media(max-width:768px){.hero{padding:100px 0 60px}}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-bottom:56px}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}}
+.hero-eye{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px}
+.hero-h{
+  font-family:var(--display);font-weight:200;
+  font-size:clamp(48px,7vw,108px);letter-spacing:-.03em;line-height:.92;color:var(--ink);
+}
+.hero-h em{font-style:normal;color:var(--gold)}
+.hero-sub{font-size:15px;color:var(--ink2);line-height:1.7;margin-top:28px;max-width:560px}
+.hero-card{
+  background:var(--gold-l);border:1px solid var(--gold-b);
+  border-radius:6px;padding:24px 28px;min-width:220px;text-align:right;
+  flex-shrink:0;
+}
+@media(max-width:768px){.hero-card{text-align:left}}
+.hero-card-n{font-family:var(--display);font-size:42px;font-weight:300;color:var(--gold);line-height:1}
+.hero-card-s{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-top:4px;opacity:.7}
+.hero-card-note{font-size:12px;color:var(--gold);margin-top:8px;line-height:1.5;opacity:.85}
+
+/* ═══════════════ STAT STRIP ═══════════════ */
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:480px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg);padding:24px 20px;transition:background var(--transition)}
+.stat:hover{background:var(--bg2)}
+.stat-n{font-family:var(--display);font-size:clamp(28px,3vw,44px);font-weight:300;letter-spacing:-.02em;color:var(--ink);line-height:1;margin-bottom:6px}
+.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);line-height:1.5}
+
+/* ═══════════════ ALERT BANNER ═══════════════ */
+.alert{background:var(--ink);color:var(--accent-inv);padding:18px 24px;display:flex;gap:20px;align-items:start;margin-bottom:24px}
+[data-theme="dark"] .alert{background:var(--bg3)}
+.alert-tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);flex-shrink:0;padding-top:2px}
+.alert-text{font-size:13px;line-height:1.65;opacity:.9}
+.alert-text strong{color:var(--gold);font-weight:500}
+.warn-box{background:var(--gold-l);border:1px solid var(--gold-b);border-radius:4px;padding:16px 20px;margin-bottom:24px}
+.warn-box p{font-size:13px;color:var(--gold);line-height:1.6}
+.warn-box p strong{font-weight:500}
+
+/* ═══════════════ SEGMENT CARDS ═══════════════ */
+.seg{background:var(--bg);padding:32px 28px;transition:background var(--transition);cursor:default}
+.seg:hover{background:var(--bg2)}
+.seg-rank{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.seg-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.seg-quote{font-size:12px;color:var(--gold);font-style:italic;margin-bottom:18px;line-height:1.5}
+.seg-meta{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px}
+.seg-m .seg-ml{font-family:var(--mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+.seg-m .seg-mv{font-size:13px;font-weight:500;color:var(--ink)}
+.bar-wrap{margin:12px 0}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.bar-label{font-family:var(--mono);font-size:9px;color:var(--ink3);min-width:90px}
+.bar-track{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;background:var(--ink);width:0;border-radius:2px;transition:width 1.2s ease .3s}
+.bar-val{font-family:var(--mono);font-size:9px;color:var(--ink2);min-width:28px;text-align:right}
+.fear-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.ftag{font-size:11px;padding:3px 9px;border:1px solid var(--line2);border-radius:2px;color:var(--ink2);line-height:1.4;transition:border-color .2s}
+.seg-offers{margin-top:12px}
+.seg-offer{font-size:12px;color:var(--ink2);padding:6px 0;border-bottom:1px solid var(--line);line-height:1.5}
+.seg-offer:last-child{border-bottom:none}
+.seg-offer::before{content:'→ ';color:var(--gold)}
+
+/* ═══════════════ CJM ═══════════════ */
+.cjm{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:1100px){.cjm{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:600px){.cjm{grid-template-columns:repeat(2,1fr)}}
+.cjm-step{background:var(--bg);padding:20px 16px;transition:background var(--transition)}
+.cjm-step.bad{background:#FEF5F5}
+[data-theme="dark"] .cjm-step.bad{background:#1A0A0A}
+.cjm-n{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.cjm-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.cjm-loss{font-size:11px;color:var(--red);line-height:1.5;padding-top:8px;border-top:1px solid var(--line);margin-top:8px}
+
+/* ═══════════════ CHART CONTAINERS ═══════════════ */
+.chart-wrap{position:relative;width:100%;padding-bottom:20px}
+.chart-wrap canvas{width:100%!important}
+.chart-title{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px}
+.donut-container{position:relative;max-width:240px;margin:0 auto}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.donut-val{font-family:var(--display);font-size:26px;font-weight:300;color:var(--ink);line-height:1}
+.donut-sub{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+
+/* ═══════════════ GLOSSARY ═══════════════ */
+.glos-item{background:var(--bg);padding:20px 24px;transition:background var(--transition)}
+.glos-item:hover{background:var(--bg2)}
+.glos-term{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--gold);margin-bottom:4px}
+.glos-full{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.glos-desc{font-size:12px;color:var(--ink2);line-height:1.6}
+.glos-example{font-size:11px;color:var(--ink3);margin-top:6px;font-style:italic;line-height:1.5}
+.glos-example::before{content:'Например: ';font-style:normal;color:var(--gold)}
+
+/* ═══════════════ SOURCES ═══════════════ */
+.src-item{background:var(--bg);padding:16px 20px;transition:background var(--transition)}
+.src-item:hover{background:var(--bg2)}
+.src-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.src-url a{font-family:var(--mono);font-size:11px;color:var(--gold);text-decoration:none}
+.src-url a:hover{text-decoration:underline}
+.src-note{font-size:12px;color:var(--ink3);margin-top:4px;line-height:1.5}
+
+/* ═══════════════ HYPOTHESIS TABLE ═══════════════ */
+.hyp-scroll{overflow-x:auto;border:1px solid var(--line)}
+table.hyp{width:100%;border-collapse:collapse;min-width:720px}
+table.hyp th{background:var(--ink);color:var(--accent-inv);font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:11px 14px;text-align:left;font-weight:400}
+table.hyp td{padding:12px 14px;font-size:12px;color:var(--ink2);border-bottom:1px solid var(--line);vertical-align:middle;line-height:1.5;background:var(--bg);transition:background var(--transition)}
+table.hyp td:nth-child(2){font-weight:500;color:var(--ink)}
+table.hyp tr:last-child td{border-bottom:none}
+table.hyp tr:hover td{background:var(--bg2)}
+.dots{display:flex;gap:3px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.dot.g{background:var(--green)}.dot.r{background:var(--red)}.dot.y{background:var(--gold)}.dot.b{background:var(--blue)}.dot.k{background:var(--ink)}
+
+/* ═══════════════ ROADMAP ═══════════════ */
+.rm3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:768px){.rm3{grid-template-columns:1fr}}
+.rm-col{padding:36px 28px;background:var(--bg);transition:background var(--transition)}
+.rm-col-dk{padding:36px 28px;background:var(--ink)}
+[data-theme="dark"] .rm-col-dk{background:var(--bg3)}
+.rm-period{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.rm-col .rm-period{color:var(--ink3)}
+.rm-col-dk .rm-period{color:rgba(242,240,235,.4)}
+.rm-h{font-family:var(--display);font-size:22px;font-weight:300;margin-bottom:24px;line-height:1.2}
+.rm-col .rm-h{color:var(--ink)}
+.rm-col-dk .rm-h{color:var(--accent-inv)}
+.rm-item{font-size:12px;padding:8px 0;border-bottom:1px solid;line-height:1.5;display:flex;gap:10px}
+.rm-item:last-child{border-bottom:none}
+.rm-item::before{content:attr(data-n);font-family:var(--mono);font-size:9px;flex-shrink:0;margin-top:1px}
+.rm-col .rm-item{color:var(--ink2);border-color:var(--line)}
+.rm-col .rm-item::before{color:var(--ink3)}
+.rm-col-dk .rm-item{color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.1)}
+.rm-col-dk .rm-item::before{color:rgba(242,240,235,.3)}
+
+/* ═══════════════ BLOCKERS ═══════════════ */
+.blk{background:var(--bg);padding:24px 20px;display:flex;gap:16px;transition:background var(--transition)}
+.blk:hover{background:var(--bg2)}
+.blk-num{font-family:var(--display);font-size:44px;font-weight:300;color:var(--line2);line-height:1;flex-shrink:0;min-width:46px}
+.blk-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.blk-desc{font-size:12px;color:var(--ink2);line-height:1.65}
+
+/* ═══════════════ ECON ═══════════════ */
+.econ{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:768px){.econ{grid-template-columns:repeat(2,1fr)}}
+.econ-c{background:var(--bg);padding:24px 20px;transition:background var(--transition)}
+.econ-c:hover{background:var(--bg2)}
+.econ-n{font-family:var(--display);font-size:38px;font-weight:300;color:var(--ink);line-height:1;margin-bottom:6px}
+.econ-l{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:4px}
+.econ-note{font-size:11px;color:var(--ink3);line-height:1.5}
+
+/* ═══════════════ PSYCHO ═══════════════ */
+.psy{background:var(--bg);padding:28px 24px;transition:background var(--transition)}
+.psy:hover{background:var(--bg2)}
+.psy-pct{font-family:var(--display);font-size:40px;font-weight:300;color:var(--line2);line-height:1;margin-bottom:8px}
+.psy-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.psy-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:14px}
+.psy-desc{font-size:12px;color:var(--ink2);line-height:1.65;padding-left:12px;border-left:2px solid var(--line);margin-bottom:12px}
+.psy-sell{font-size:11px;color:var(--gold);line-height:1.55;font-style:italic}
+
+/* ═══════════════ SCALE CARDS ═══════════════ */
+.scale{background:var(--bg);padding:28px 24px;transition:background var(--transition)}
+.scale:hover{background:var(--bg2)}
+.scale-letter{font-family:var(--display);font-size:52px;font-weight:300;color:var(--line2);line-height:1;margin-bottom:8px}
+.scale-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.scale-desc{font-size:12px;color:var(--ink2);line-height:1.65}
+
+/* ═══════════════ POSITIONING ═══════════════ */
+.pos{background:var(--bg);padding:32px 28px;transition:background var(--transition)}
+.pos-best{background:var(--ink);padding:32px 28px}
+[data-theme="dark"] .pos-best{background:var(--bg3)}
+.pos-grade{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.pos .pos-grade{color:var(--ink3)}
+.pos-best .pos-grade{color:var(--gold)}
+.pos-text{font-family:var(--display);font-size:18px;font-weight:300;line-height:1.35;margin-bottom:12px}
+.pos .pos-text{color:var(--ink)}
+.pos-best .pos-text{color:var(--accent-inv)}
+.pos-note{font-size:12px;line-height:1.5}
+.pos .pos-note{color:var(--ink3)}
+.pos-best .pos-note{color:rgba(242,240,235,.5)}
+
+/* ═══════════════ OFFER CARDS ═══════════════ */
+.off{background:var(--bg);padding:28px 24px;transition:background var(--transition)}
+.off:hover{background:var(--bg2)}
+.off-type{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.off-text{font-family:var(--display);font-size:18px;font-weight:300;color:var(--ink);line-height:1.35;margin-bottom:12px}
+.off-note{font-size:12px;color:var(--ink3);line-height:1.5}
+
+/* ═══════════════ TRAFFIC ═══════════════ */
+.trf{background:var(--bg);padding:24px 20px;transition:background var(--transition)}
+.trf-pct{font-family:var(--display);font-size:48px;font-weight:300;color:var(--ink);line-height:1;margin-bottom:6px}
+.trf-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.trf-desc{font-size:11px;color:var(--ink3);line-height:1.5;margin-bottom:12px}
+.temp{display:inline-block;font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px}
+.t-h{background:#FAD7D4;color:var(--red)}
+.t-w{background:var(--gold-l);color:var(--gold)}
+.t-c{background:#D4E3F5;color:var(--blue)}
+
+/* ═══════════════ QUESTIONS ═══════════════ */
+.q{background:var(--bg);padding:24px 20px;transition:background var(--transition)}
+.q:hover{background:var(--bg2)}
+.q-n{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink3);margin-bottom:10px}
+.q-text{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5;margin-bottom:6px}
+.q-why{font-size:12px;color:var(--ink3);line-height:1.5;font-style:italic}
+.q-action{font-size:11px;color:var(--gold);margin-top:6px;font-weight:500}
+.q-action::before{content:'Действие: '}
+
+/* ═══════════════ FOOTER ═══════════════ */
+.foot{padding:64px 0;display:flex;align-items:start;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.foot-l{font-size:12px;color:var(--ink3);line-height:1.8}
+.foot-l strong{color:var(--ink);display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.author-card{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:24px 28px;min-width:260px}
+.author-title{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px}
+.author-name{font-family:var(--display);font-size:22px;font-weight:300;color:var(--ink);margin-bottom:4px}
+.author-role{font-size:13px;color:var(--ink3);margin-bottom:16px}
+.author-links{display:flex;flex-direction:column;gap:8px}
+.author-links a{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;font-family:var(--mono);font-size:12px;
+  color:var(--ink);padding:8px 12px;
+  background:var(--bg3);border-radius:4px;
+  transition:all .2s;
+}
+.author-links a:hover{background:var(--gold);color:#fff}
+.author-links a span{opacity:.5;font-size:11px}
+
+/* ═══════════════ REVEAL ═══════════════ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.rv.in{opacity:1;transform:none}
+.rv1{transition-delay:.08s}
+.rv2{transition-delay:.16s}
+.rv3{transition-delay:.24s}
+
+/* ═══════════════ PRINT ═══════════════ */
+@media print{
+  header,.mob-nav,.btn-theme,#progress{display:none}
+  body{padding-bottom:0}
+  section{page-break-inside:avoid}
+  *{opacity:1!important;transform:none!important}
+}
+
+/* Мобильная версия: контент остаётся тем же, но читается без зума и
+   случайного горизонтального сдвига. */
+@media (max-width: 767px){
+  html{font-size:15px;scroll-padding-top:62px}
+  body{padding-bottom:78px;overflow-x:hidden;overscroll-behavior-x:none}
+  .nav-wrap{height:54px;padding:0 14px;gap:10px}
+  .nav-logo{font-size:9px;letter-spacing:.07em;overflow:hidden;text-overflow:ellipsis;max-width:38vw}
+  .nav-right{gap:6px}
+  .btn-contact{display:inline-flex;align-items:center;justify-content:center;padding:6px 8px;font-size:9px;letter-spacing:.03em}
+  .btn-theme{width:31px;height:31px;font-size:12px}
+  .W{width:100%;padding-left:16px;padding-right:16px}
+  section{padding:58px 0;scroll-margin-top:62px}
+  .hero{padding-top:94px;padding-bottom:46px}
+  .hero-grid{gap:28px;margin-bottom:34px}
+  .hero-eye{font-size:9px;letter-spacing:.09em;line-height:1.5}
+  .hero-h{font-size:clamp(42px,13vw,66px);line-height:.96}
+  .hero-sub{font-size:14px;line-height:1.6;margin-top:20px}
+  .hero-card{width:100%;min-width:0;padding:18px 20px;text-align:left}
+  .hero-card-n{font-size:34px}
+  .hero-card-note{font-size:11px}
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat{min-width:0;padding:18px 14px}
+  .stat-n{font-size:clamp(24px,8vw,36px)}
+  .stat-l{font-size:9px;overflow-wrap:anywhere}
+  .alert{display:block;padding:16px 18px;margin-bottom:18px}
+  .alert-tag{margin-bottom:8px}
+  .alert-text{font-size:12px;line-height:1.6}
+  .sh{grid-template-columns:30px minmax(0,1fr);gap:12px;margin-bottom:30px}
+  .sh-num{font-size:10px;padding-top:5px}
+  .sh-h{font-size:clamp(24px,8vw,34px);line-height:1.05}
+  .sh-note{display:none}
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr}
+  .cell,.seg,.psy,.scale,.pos,.pos-best,.off,.trf,.q,.blk,.glos-item,.src-item,.rm-col,.rm-col-dk{padding:20px 16px}
+  .g2,.g3,.g4,.g5,.stats-grid,.hyp-scroll{max-width:100%;min-width:0}
+  .cjm{grid-template-columns:repeat(2,minmax(0,1fr));min-width:0}
+  .cjm-step{padding:16px 12px;min-width:0}
+  .cjm-step:last-child{grid-column:1/-1}
+  .cjm-name{font-size:12px}
+  .cjm-loss{font-size:10px}
+  .chart-wrap{min-width:0}
+  .chart-wrap canvas{max-height:260px}
+  .donut-container{max-width:210px}
+  .bar-row{gap:7px}
+  .bar-label{min-width:72px;font-size:8px}
+  .seg-meta{gap:11px;margin-bottom:12px}
+  .seg-m .seg-mv{font-size:12px}
+  .seg-quote{font-size:11px}
+  .fear-tags{gap:4px}
+  .ftag{font-size:10px;padding:3px 7px}
+  .hyp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table.hyp{min-width:680px}
+  .econ{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .econ-c{padding:18px 14px}
+  .econ-n{font-size:30px;overflow-wrap:anywhere}
+  .rm3{grid-template-columns:1fr}
+  .foot{padding:44px 0 24px;display:flex;flex-direction:column;gap:24px}
+  .foot-l{font-size:11px;line-height:1.7;overflow-wrap:anywhere}
+  .author-card{width:100%;min-width:0;padding:20px}
+  .author-name{font-size:19px}
+  .author-links a{font-size:11px;overflow-wrap:anywhere}
+  .src-url,.src-note,.glos-example,.blk-desc,.q-text,.q-why,.q-action{overflow-wrap:anywhere}
+  .mob-nav{padding:9px 8px calc(10px + env(safe-area-inset-bottom));gap:4px;justify-content:flex-start;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;position:fixed}
+  .mob-nav::after{content:'листайте →';position:absolute;right:10px;top:-21px;padding:3px 7px;border:1px solid var(--line);border-radius:12px;background:var(--bg2);color:var(--ink3);font:9px var(--mono);letter-spacing:.04em;pointer-events:none;opacity:.95;transition:opacity .3s ease}
+  .mob-nav.is-scrolled::after{opacity:0}
+  .mob-nav a{flex:0 0 72px;min-width:72px;padding:5px 4px;font-size:8px;line-height:1.2;scroll-snap-align:start;-webkit-tap-highlight-color:transparent}
+}
+
+/* Не даём содержимому grid-ячейки расширять viewport на узких экранах. */
+.g2>*,.g3>*,.g4>*,.g5>*,.stats-grid>*,.cjm>*,.hero-grid>*{min-width:0}
+img,svg,canvas{max-width:100%}
+td,th,.src-name,.src-url,.src-note{overflow-wrap:anywhere}
+
+@media (max-width: 767px){
+  .chart-wrap canvas,.cell canvas{display:block;max-width:100%!important}
+  .chart-title{line-height:1.35}
+  .section .g2,.section .g3,.section .g4,.section .g5,.section .cjm,.section .econ,.section .stats-grid{width:100%;margin-left:0;margin-right:0}
+  .hyp-scroll{width:100%;max-width:100%;touch-action:pan-x pan-y}
+}
+
+/* Лёгкая глубина только на мыши; на телефоне карточки не «залипают». */
+@media (hover:hover) and (pointer:fine){
+  .cell,.seg,.psy,.scale,.off,.trf,.q,.glos-item,.src-item,.econ-c{transition:background .25s ease,transform .25s ease,box-shadow .25s ease}
+  .cell:hover,.seg:hover,.psy:hover,.scale:hover,.off:hover,.trf:hover,.q:hover,.glos-item:hover,.src-item:hover,.econ-c:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,14,14,.08)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+
+/* На сенсорных устройствах не оставляем hover-состояние после нажатия. */
+@media (hover:none), (pointer:coarse){
+  a,button{-webkit-tap-highlight-color:transparent}
+  .cell:hover,.stat:hover,.seg:hover,.psy:hover,.scale:hover,.blk:hover,.econ-c:hover,.q:hover,.glos-item:hover,.src-item:hover,.rm-col:hover,.mob-nav a:hover{background:initial;color:inherit}
+  .nav-links a:hover,.mob-nav a:hover{background:transparent;color:var(--ink3)}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ── NAV ── -->
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="nav-logo">Персона / Разбор 2026</a>
+    <nav class="nav-links">
+      <a href="#overview">Обзор</a>
+      <a href="#segments">Сегменты</a>
+      <a href="#cjm">Путь</a>
+      <a href="#business-units">Юниты</a>
+      <a href="#competitors">Конкуренты</a>
+      <a href="#psycho">Психотипы</a>
+      <a href="#positioning">Позиция</a>
+      <a href="#traffic">Трафик</a>
+      <a href="#economics">Экономика</a>
+      <a href="#roadmap">Роадмап</a>
+      <a href="#blockers">Блокеры</a>
+      <a href="#hypotheses">Гипотезы</a>
+      <a href="#scaling">Рост</a>
+      <a href="#glossary">Словарь</a>
+      <a href="#sources">Источники</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn-contact" href="https://t.me/shershikoff" target="_blank">Связаться</a>
+      <button class="btn-theme" id="themeBtn" title="Сменить тему">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+      <button class="btn-theme" onclick="window.print()" title="Сохранить PDF">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ── MOBILE BOTTOM NAV ── -->
+<nav class="mob-nav" id="mobNav">
+  <a href="#overview"><span>01</span>Обзор</a>
+  <a href="#segments"><span>02</span>Сегменты</a>
+  <a href="#cjm"><span>03</span>Путь</a>
+  <a href="#business-units"><span>04</span>Юниты</a>
+  <a href="#competitors"><span>05</span>Конкур.</a>
+  <a href="#psycho"><span>06</span>Психо</a>
+  <a href="#traffic"><span>07</span>Трафик</a>
+  <a href="#economics"><span>08</span>Экономика</a>
+  <a href="#roadmap"><span>09</span>Роадмап</a>
+  <a href="#glossary"><span>10</span>Словарь</a>
+</nav>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 01 HERO / OVERVIEW -->
+<!-- ════════════════════════════════════════ -->
+<section class="hero" id="overview">
+  <div class="W">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eye rv">Ресторан «Персона» · Копейск · Апрель 2026</div>
+        <h1 class="hero-h rv rv1">Полный<br>разбор<br><em>бизнеса</em></h1>
+        <p class="hero-sub rv rv2">
+          15 лет на рынке. Единственный банкет-холл с профессиональной шоу-программой в Копейске. #1 TripAdvisor среди 37 ресторанов города. При этом нет сайта, нет прайсов онлайн, нет программы лояльности, кухня нестабильна, 30% отзывов — критика. Главная структурная проблема — они в Копейске (180 тыс. чел.), а не в Челябинске (1.1 млн чел.). Разрыв между потенциалом и реальностью — это и есть точка роста.
+        </p>
+      </div>
+      <div class="rv rv3">
+        <div class="hero-card">
+          <div class="hero-card-n">340K</div>
+          <div class="hero-card-s">из 1 000 000</div>
+          <div class="hero-card-note">Текущий потенциал.<br>При системной работе: 680K+<br>за 12 месяцев</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid rv">
+      <div class="stat"><div class="stat-n">15</div><div class="stat-l">лет на рынке<br>с 2011 года</div></div>
+      <div class="stat"><div class="stat-n">#1</div><div class="stat-l">из 37 ресторанов<br>TripAdvisor Копейск</div></div>
+      <div class="stat"><div class="stat-n">3 200</div><div class="stat-l">мин. средний чек<br>руб./чел. банкет</div></div>
+      <div class="stat"><div class="stat-n">55%</div><div class="stat-l">трафика через<br>сарафан</div></div>
+      <div class="stat"><div class="stat-n">~30%</div><div class="stat-l">отзывов с критикой<br>кухни</div></div>
+    </div>
+
+    <div class="alert rv rv1" style="margin-top:24px">
+      <div class="alert-tag">Правка от маркетолога</div>
+      <div class="alert-text">
+        Реальные конкуренты по банкетам: <strong>Уральские, Максимилианс, Палермо</strong> — не рестораны центра Челябинска (другой сегмент и другая ценовая категория). Средний чек на бизнес-ланч у Персоны — <strong>самый высокий в Копейске</strong> (3 200–3 500 руб.). Данных по доставке через Яндекс.Еду нет — информация не подтверждена, убрана из анализа.
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="g3 rv rv2" style="margin-top:40px">
+      <div class="cell">
+        <div class="chart-title">Структура трафика сейчас</div>
+        <div class="donut-container" style="max-width:200px">
+          <canvas id="chartTraffic"></canvas>
+          <div class="donut-center"><div class="donut-val" id="trafficVal">55%</div><div class="donut-sub">Сарафан</div></div>
+        </div>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Сарафан</span><span style="font-family:var(--mono)">55%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Яндекс.Карты / 2ГИС</span><span style="font-family:var(--mono)">25%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>ВКонтакте (органика)</span><span style="font-family:var(--mono)">15%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Прямые обращения</span><span style="font-family:var(--mono)">5%</span></div>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="chart-title">Распределение выручки по продуктам</div>
+        <canvas id="chartRevenue"></canvas>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Банкеты / торжества</span><span style="font-family:var(--mono)">~65%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Пятница/суббота (вечера)</span><span style="font-family:var(--mono)">~20%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Бизнес-ланч</span><span style="font-family:var(--mono)">~10%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Прочее (кейтеринг и др.)</span><span style="font-family:var(--mono)">~5%</span></div>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="chart-title">Отзывы: тональность (150+ отзывов)</div>
+        <div class="donut-container" style="max-width:200px">
+          <canvas id="chartReviews"></canvas>
+          <div class="donut-center"><div class="donut-val">4.2</div><div class="donut-sub">TripAdvisor</div></div>
+        </div>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--green)"><span>Позитив (кухня + сервис)</span><span style="font-family:var(--mono)">55%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gold)"><span>Нейтральные</span><span style="font-family:var(--mono)">15%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--red)"><span>Негатив (кухня)</span><span style="font-family:var(--mono)">30%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 02 SEGMENTS -->
+<!-- ════════════════════════════════════════ -->
+<section id="segments">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">02</span>
+      <h2 class="sh-h">Сегменты ЦА</h2>
+      <span class="sh-note">10 сегментов, от приоритетного к менее значимому</span>
+    </div>
+
+    <div class="g2 rv">
+      <!-- S1 -->
+      <div class="seg">
+        <div class="seg-rank">01 / Основной — максимальный приоритет</div>
+        <div class="seg-title">Семьи: юбилей, ДР, свадьба</div>
+        <div class="seg-quote">«Хочу чтобы всё было красиво — и не надо ничего самому организовывать»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Пол</div><div class="seg-mv">Ж 65% / М 35%</div></div>
+          <div class="seg-m"><div class="seg-ml">Возраст</div><div class="seg-mv">28–65, ср. 44</div></div>
+          <div class="seg-m"><div class="seg-ml">Доход семьи</div><div class="seg-mv">50–120 тыс./мес.</div></div>
+          <div class="seg-m"><div class="seg-ml">Цикл решения</div><div class="seg-mv">2–8 недель</div></div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-row"><span class="bar-label">Копейск</span><div class="bar-track"><div class="bar-fill" data-w="65"></div></div><span class="bar-val">65%</span></div>
+          <div class="bar-row"><span class="bar-label">Челябинск</span><div class="bar-track"><div class="bar-fill" data-w="25"></div></div><span class="bar-val">25%</span></div>
+          <div class="bar-row"><span class="bar-label">Область</span><div class="bar-track"><div class="bar-fill" data-w="10"></div></div><span class="bar-val">10%</span></div>
+        </div>
+        <div class="fear-tags">
+          <span class="ftag">Стол окажется скудным</span>
+          <span class="ftag">Ведущий подведёт</span>
+          <span class="ftag">Скрытые доплаты</span>
+          <span class="ftag">Кухня в день X</span>
+          <span class="ftag">Фото на старом фоне</span>
+          <span class="ftag">Не вернут предоплату</span>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Банкет под ключ от 1 200 руб./чел: ведущий, DJ, кухня, 2 зала на выбор</div>
+          <div class="seg-offer">15 лет в Копейске — один звонок, и праздник готов</div>
+          <div class="seg-offer">Антиоффер: если хотите за 800 руб./чел без программы — мы не ваш вариант</div>
+        </div>
+      </div>
+
+      <!-- S2 -->
+      <div class="seg">
+        <div class="seg-rank">02 / Высокий приоритет</div>
+        <div class="seg-title">Корпоративный: корпоратив, конференция</div>
+        <div class="seg-quote">«Сотрудники скажут спасибо — значит я молодец»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Пол</div><div class="seg-mv">Ж 60% (HR) / М 40%</div></div>
+          <div class="seg-m"><div class="seg-ml">Возраст</div><div class="seg-mv">30–55, ср. 40</div></div>
+          <div class="seg-m"><div class="seg-ml">Компании</div><div class="seg-mv">ЧМК, КГОК, малый бизнес</div></div>
+          <div class="seg-m"><div class="seg-ml">Пик спроса</div><div class="seg-mv">Ноябрь–декабрь</div></div>
+        </div>
+        <div class="fear-tags">
+          <span class="ftag">«Опять колхоз»</span>
+          <span class="ftag">Нет документов для бухг.</span>
+          <span class="ftag">Тесно при 50+ чел.</span>
+          <span class="ftag">Программа слабая</span>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Корпоратив 30–80 чел. под ключ. Смета за 1 час. Документы для бухгалтерии</div>
+          <div class="seg-offer">Новогодний без стресса: вы гуляете — мы организуем</div>
+          <div class="seg-offer">B2B аутрич: прямые звонки компаниям Копейска в ноябре</div>
+        </div>
+      </div>
+
+      <!-- S3 -->
+      <div class="seg">
+        <div class="seg-rank">03 / Высокий приоритет</div>
+        <div class="seg-title">Молодёжь: выпускной, свадьба до 30, ДР</div>
+        <div class="seg-quote">«Красивые фото = было круто»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Пол</div><div class="seg-mv">Ж 70% / М 30%</div></div>
+          <div class="seg-m"><div class="seg-ml">Возраст</div><div class="seg-mv">18–30, ср. 24</div></div>
+          <div class="seg-m"><div class="seg-ml">Доход</div><div class="seg-mv">20–50 тыс. + родители</div></div>
+        </div>
+        <div class="fear-tags">
+          <span class="ftag">Интерьер устарел</span>
+          <span class="ftag">Музыка 80–90-е</span>
+          <span class="ftag">Дядьки 50+ рядом</span>
+          <span class="ftag">Дорого для нас</span>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Выпускной, которым будете хвалиться — от 1 500 руб./чел, DJ включён</div>
+          <div class="seg-offer">Свадьба 20 гостей от 450 000 руб. под ключ (есть пакет)</div>
+        </div>
+      </div>
+
+      <!-- S4 -->
+      <div class="seg">
+        <div class="seg-rank">04 / Средний приоритет</div>
+        <div class="seg-title">Пятница/суббота: ужин + шоу-программа</div>
+        <div class="seg-quote">«Расслабиться после недели — не дома»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Пол</div><div class="seg-mv">Ж 55% / М 45%</div></div>
+          <div class="seg-m"><div class="seg-ml">Возраст</div><div class="seg-mv">25–55, ср. 38</div></div>
+          <div class="seg-m"><div class="seg-ml">Ср. чек/чел</div><div class="seg-mv">2 000–5 000 руб.</div></div>
+        </div>
+        <div class="fear-tags">
+          <span class="ftag">Скучная программа</span>
+          <span class="ftag">Музыка орёт — не поговорить</span>
+          <span class="ftag">Контингент в спортивках</span>
+          <span class="ftag">Нет свободных мест</span>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Лучший вечер Копейска по пятницам: шоу + DJ + ужин. Бронь в WhatsApp</div>
+          <div class="seg-offer">Нужен минимальный дресс-код и анонсы программы за 3–5 дней</div>
+        </div>
+      </div>
+
+      <!-- S5 -->
+      <div class="seg">
+        <div class="seg-rank">05 / Средний приоритет</div>
+        <div class="seg-title">Бизнес-ланч: офисные сотрудники центра</div>
+        <div class="seg-quote">«Быстро, вкусно, не столовая»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Пол</div><div class="seg-mv">М 55% / Ж 45%</div></div>
+          <div class="seg-m"><div class="seg-ml">Чек</div><div class="seg-mv">550 руб. — граница</div></div>
+          <div class="seg-m"><div class="seg-ml">Факт</div><div class="seg-mv">Самый высокий ланч-чек в Копейске</div></div>
+        </div>
+        <div class="fear-tags">
+          <span class="ftag">Долго ждать</span>
+          <span class="ftag">Одно меню каждый день</span>
+          <span class="ftag">Холодное горячее</span>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Бизнес-ланч 550 руб.: суп + горячее + напиток. Меняем каждый день. 30 минут</div>
+          <div class="seg-offer">Стратегия: ланч → знакомство → доверие → банкет</div>
+        </div>
+      </div>
+
+      <!-- S6 -->
+      <div class="seg">
+        <div class="seg-rank">06 / Средний приоритет</div>
+        <div class="seg-title">Гости из Челябинска</div>
+        <div class="seg-quote">«Некопейский ресторан по нормальной цене»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Откуда</div><div class="seg-mv">Металлург. р-н 40%</div></div>
+          <div class="seg-m"><div class="seg-ml">Повод</div><div class="seg-mv">Родственники / командировка</div></div>
+        </div>
+        <div class="fear-tags">
+          <span class="ftag">Стоит ли ехать</span>
+          <span class="ftag">Не дотянет до Челябинска</span>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Лучший ресторан Копейска — 15 мин. от Металлургического р-на</div>
+          <div class="seg-offer">«Абсолютно некопейский ресторан» — цитата реального отзыва</div>
+        </div>
+      </div>
+
+      <!-- S7 -->
+      <div class="seg">
+        <div class="seg-rank">07 / Малый приоритет</div>
+        <div class="seg-title">Романтические пары: свидание, годовщина</div>
+        <div class="seg-quote">«Вечер особенный — не домашняя еда»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Инициатор</div><div class="seg-mv">Ж 65% / М 35%</div></div>
+          <div class="seg-m"><div class="seg-ml">Возраст</div><div class="seg-mv">22–45, ср. 32</div></div>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Ужин для двоих в малом зале, комплимент от шеф-повара</div>
+          <div class="seg-offer">Ненавязчивый сервис, приглушённый свет, тихая музыка в будни</div>
+        </div>
+      </div>
+
+      <!-- S8 -->
+      <div class="seg">
+        <div class="seg-rank">08 / Малый приоритет</div>
+        <div class="seg-title">B2B переговоры: деловые встречи</div>
+        <div class="seg-quote">«Произвести впечатление на партнёра»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Оборудование</div><div class="seg-mv">Проектор + 3 экрана</div></div>
+          <div class="seg-m"><div class="seg-ml">Зал</div><div class="seg-mv">25 мест, отдельный</div></div>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Деловой обед: Wi-Fi, проектор, документы для бухгалтерии</div>
+        </div>
+      </div>
+
+      <!-- S9 -->
+      <div class="seg">
+        <div class="seg-rank">09 / Малый приоритет</div>
+        <div class="seg-title">Спонтанный поток: события города</div>
+        <div class="seg-quote">«Где поесть рядом прямо сейчас»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Канал</div><div class="seg-mv">2ГИС / геолокация</div></div>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Геотаргет 500 м в пятницу: «Свободные столики — бронь за 5 мин в WhatsApp»</div>
+        </div>
+      </div>
+
+      <!-- S10 -->
+      <div class="seg">
+        <div class="seg-rank">10 / Точка роста (не завтра)</div>
+        <div class="seg-title">Кейтеринг: выездное обслуживание</div>
+        <div class="seg-quote">«Праздник там, где нам удобно — не там, где есть зал»</div>
+        <div class="seg-meta">
+          <div class="seg-m"><div class="seg-ml">Заказчики</div><div class="seg-mv">ЧМК, КГОК, администрация</div></div>
+          <div class="seg-m"><div class="seg-ml">Форматы</div><div class="seg-mv">Выездная свадьба, корпоратив</div></div>
+        </div>
+        <div class="seg-offers">
+          <div class="seg-offer">Снимает проблему геолокации. Масштаб без нового зала. Запускать после стабилизации кухни</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common portrait -->
+    <div class="g3 rv rv2" style="margin-top:40px">
+      <div class="cell">
+        <span class="lbl">Общий портрет ЦА</span>
+        <ul class="lst">
+          <li>Пол: Ж 58% / М 42%</li>
+          <li>Возраст: 25–60 лет, средний — 40</li>
+          <li>Доход семьи: 45–100 тыс./мес., ср. 65 тыс.</li>
+          <li>Гео: Копейск 68%, Челябинск 22%, область 10%</li>
+          <li>Онлайн: Яндекс.Карты, 2ГИС, ВКонтакте, WhatsApp</li>
+          <li>Цикл банкета: 2–8 недель с момента поиска</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">Словарь ЦА — что гуглят и говорят</span>
+        <ul class="lst">
+          <li>«банкет под ключ Копейск»</li>
+          <li>«ресторан для юбилея мамы»</li>
+          <li>«ведущий зажигал, все танцевали»</li>
+          <li>«никто не остался голодным»</li>
+          <li>«как дома, но лучше»</li>
+          <li>«цена понятна заранее, без сюрпризов»</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">Скрытые желания (то, что не говорят вслух)</span>
+        <ul class="lst">
+          <li>Уважение: «мы умеем гулять красиво»</li>
+          <li>Контроль: организатор хочет выдохнуть и не думать</li>
+          <li>Статус: праздник в ресторане = мы не экономим</li>
+          <li>Безопасность: «нас не подведут в важный день»</li>
+          <li>Признание: виновник торжества должен светиться</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 03 CJM -->
+<!-- ════════════════════════════════════════ -->
+<section id="cjm">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">03</span>
+      <h2 class="sh-h">Путь клиента</h2>
+      <span class="sh-note">Красным — потери денег прямо сейчас</span>
+    </div>
+    <div class="cjm rv">
+      <div class="cjm-step bad">
+        <div class="cjm-n">01</div>
+        <div class="cjm-name">Ищет «банкет Копейск»</div>
+        <div class="cjm-loss">Сайта нет в топе — уходит к конкуренту ещё до звонка</div>
+      </div>
+      <div class="cjm-step bad">
+        <div class="cjm-n">02</div>
+        <div class="cjm-name">Читает отзывы</div>
+        <div class="cjm-loss">30% негатива про кухню — возникает сомнение в выборе</div>
+      </div>
+      <div class="cjm-step bad">
+        <div class="cjm-n">03</div>
+        <div class="cjm-name">Ищет цены</div>
+        <div class="cjm-loss">Цен нет нигде публично — часть не звонит вовсе</div>
+      </div>
+      <div class="cjm-step bad">
+        <div class="cjm-n">04</div>
+        <div class="cjm-name">Звонит / пишет</div>
+        <div class="cjm-loss">Долгий ответ, нет скрипта у администратора, нет КП</div>
+      </div>
+      <div class="cjm-step">
+        <div class="cjm-n">05</div>
+        <div class="cjm-name">Просмотр зала</div>
+        <div class="cjm-loss">Нет пакетного оффера, нет сравнения залов под размер</div>
+      </div>
+      <div class="cjm-step">
+        <div class="cjm-n">06</div>
+        <div class="cjm-name">Мероприятие</div>
+        <div class="cjm-loss">Если кухня подводит — это негативный отзыв на всех площадках</div>
+      </div>
+      <div class="cjm-step">
+        <div class="cjm-n">07</div>
+        <div class="cjm-name">После банкета</div>
+        <div class="cjm-loss">Никто не просит отзыв. Нет программы лояльности. Не вернулись</div>
+      </div>
+    </div>
+
+    <div class="alert rv rv1" style="margin-top:32px">
+      <div class="alert-tag">Главная потеря</div>
+      <div class="alert-text">Клиент уходит ещё до первого контакта: сайта нет → не найти цену → не хочет звонить. Это самая дешёвая точка роста — починить за 3–4 недели.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 04 BUSINESS UNITS -->
+<!-- ════════════════════════════════════════ -->
+<section id="business-units">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">04</span>
+      <h2 class="sh-h">Бизнес-юниты</h2>
+      <span class="sh-note">Каждый продукт — отдельная воронка</span>
+    </div>
+
+    <div class="g4 rv">
+      <div class="cell-dk">
+        <span class="lbl" style="color:rgba(242,240,235,.4)">Флагман</span>
+        <div style="font-family:var(--display);font-size:20px;font-weight:300;color:var(--gold);margin-bottom:12px">Банкеты</div>
+        <ul class="lst" style="border-color:rgba(255,255,255,.1)">
+          <li style="color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.08)">Свадьбы, юбилеи, ДР, выпускные</li>
+          <li style="color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.08)">Корпоративы</li>
+          <li style="color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.08)">Лид-магнит: экскурсия по залам + дегустация</li>
+          <li style="color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.08)">Трипваер: консультация с Дмитрием</li>
+          <li style="color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.08)">Флагман: пакет под ключ 90–300+ тыс. руб.</li>
+          <li style="color:rgba(242,240,235,.7);border-color:rgba(255,255,255,.08)">Upsell: декор, фотограф, торт</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">Пятничные вечера</span>
+        <div style="font-family:var(--display);font-size:20px;font-weight:300;color:var(--ink);margin-bottom:12px">Open Events</div>
+        <ul class="lst">
+          <li>Шоу-программа + DJ по пт/сб</li>
+          <li>Лид-магнит: розыгрыш билетов (125 лайков — рекорд VK)</li>
+          <li>Трипваер: «пятничный ужин за столиком»</li>
+          <li>Флагман: бронирование через WhatsApp</li>
+          <li>Upsell: отдельный столик / VIP-зона</li>
+          <li>Боль: музыка 80–90-е → нужна современная</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">Бизнес-ланч</span>
+        <div style="font-family:var(--display);font-size:20px;font-weight:300;color:var(--ink);margin-bottom:12px">Lunch</div>
+        <ul class="lst">
+          <li>550 руб. — самый высокий ланч-чек в Копейске</li>
+          <li>Лид-магнит: первый ланч в подарок для новых корп. клиентов</li>
+          <li>Трипваер: абонемент 10 ланчей по предоплате</li>
+          <li>Флагман: корпоративное питание по договору</li>
+          <li>B2B аутрич в офисы центра Копейска</li>
+          <li>KPI: скорость ≤ 25 мин., меню меняется ежедневно</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">Кейтеринг (сценарий роста)</span>
+        <div style="font-family:var(--display);font-size:20px;font-weight:300;color:var(--ink);margin-bottom:12px">Catering</div>
+        <ul class="lst">
+          <li>Выездные свадьбы, корп. события на объекте</li>
+          <li>ЧМК, КГОК, администрация Копейска</li>
+          <li>Снимает проблему геолокации</li>
+          <li>Масштаб без нового зала</li>
+          <li>Запускать только после стабилизации кухни</li>
+          <li>Нужны: оборудование, логистика, отдельный лендинг</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sales instruments per unit -->
+    <div style="margin-top:40px">
+      <div class="warn-box rv">
+        <p><strong>Главный принцип инструментов продаж:</strong> у каждого бизнес-юнита своя воронка. Нельзя продвигать все под одним офером. Банкет продаётся через экскурсию по залу. Ланч — через скорость и цену. Вечера — через видео с шоу-программой.</p>
+      </div>
+      <div class="g3 rv rv1">
+        <div class="cell">
+          <span class="lbl">Лид-магниты / КЭВ (точки входа)</span>
+          <ul class="lst">
+            <li>Бесплатная экскурсия по залам + дегустация 2–3 блюд (КЭВ для банкета)</li>
+            <li>Расчёт сметы за 1 час по WhatsApp</li>
+            <li>Комплимент имениннику от ресторана — сделать системой</li>
+            <li>Welcome drink при предзаказе от 3 000 руб./чел</li>
+            <li>QR-код на чеке → отзыв → скидка 5% на следующий визит</li>
+            <li>Подарочный сертификат — продвигать активнее</li>
+          </ul>
+        </div>
+        <div class="cell">
+          <span class="lbl">Трипваеры (вход перед основной покупкой)</span>
+          <ul class="lst">
+            <li>Бизнес-ланч 550 руб. → знакомство → банкет</li>
+            <li>Karaoke QUIZ вечер → повторные визиты</li>
+            <li>Пробный ужин в пятницу → доверие к кухне → банкет</li>
+            <li>Консультация с Дмитрием по банкетному меню — бесплатно</li>
+          </ul>
+        </div>
+        <div class="cell">
+          <span class="lbl">Upsell / Cross-sell (рост среднего чека)</span>
+          <ul class="lst">
+            <li>Декорирование зала пакетами (сейчас базовое)</li>
+            <li>Партнёрский фотограф / видеограф</li>
+            <li>Торт от кондитера партнёра</li>
+            <li>Дополнительные номера артистов</li>
+            <li>Продление банкета на час (+цена)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 05 COMPETITORS -->
+<!-- ════════════════════════════════════════ -->
+<section id="competitors">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">05</span>
+      <h2 class="sh-h">Конкуренты</h2>
+      <span class="sh-note">Реальные по банкетам: Уральские, Максимилианс, Палермо</span>
+    </div>
+
+    <div class="alert rv" style="margin-bottom:32px">
+      <div class="alert-tag">Важно</div>
+      <div class="alert-text">Маркетолог Яна: «Это не наши конкуренты. К нам ближе: <strong>Уральские, Максимилианс, Палермо</strong>. Центр Челябинска — не в нашу степь, это премиум-сегмент. Не хватает банкет-холлов, свадебных площадок.» По Уральским, Максимилианс, Палермо данных в открытых источниках мало — <strong>требует полевого исследования (посетить инкогнито)</strong>.</div>
+    </div>
+
+    <div class="hyp-scroll rv">
+      <table class="hyp">
+        <thead>
+          <tr>
+            <th>Статус</th><th>Название</th><th>Локация</th>
+            <th>Банкет/чел.</th><th>Шоу</th><th>Сайт</th>
+            <th>Лояльность</th><th>Угроза</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--gold-l)">
+            <td><span class="tag ty">МЫ</span></td><td style="color:var(--gold)">Персона</td>
+            <td>Копейск, центр</td><td>3 200–3 500 ₽</td>
+            <td><span class="tag tg">Сильная</span></td>
+            <td><span class="tag tr">Нет</span></td>
+            <td><span class="tag tr">Нет</span></td><td>—</td>
+          </tr>
+          <tr><td><span class="tag tr">ПРЯМОЙ</span></td><td>Уральские</td><td>Копейск/Чел.</td><td>???</td><td><span class="tag tb">Неизвестно</span></td><td><span class="tag tb">???</span></td><td><span class="tag tb">???</span></td><td><span class="tag tr">Высокая</span></td></tr>
+          <tr><td><span class="tag tr">ПРЯМОЙ</span></td><td>Максимилианс</td><td>Челябинск</td><td>Выше среднего</td><td><span class="tag tg">Есть</span></td><td><span class="tag tg">Сильный</span></td><td><span class="tag tg">Есть</span></td><td><span class="tag tr">Высокая</span></td></tr>
+          <tr><td><span class="tag tr">ПРЯМОЙ</span></td><td>Палермо</td><td>Челябинск</td><td>???</td><td><span class="tag tb">???</span></td><td><span class="tag tb">???</span></td><td><span class="tag tb">???</span></td><td><span class="tag tr">Высокая</span></td></tr>
+          <tr><td><span class="tag ty">Копейск</span></td><td>Изба</td><td>Копейск</td><td>???</td><td><span class="tag tb">???</span></td><td><span class="tag tr">Слабый</span></td><td><span class="tag tb">???</span></td><td><span class="tag tr">Рейтинг 4.6 &gt; нас</span></td></tr>
+          <tr><td><span class="tag ty">Копейск</span></td><td>Помидор</td><td>Просп. Слава, 8</td><td>700–1 500 ₽</td><td><span class="tag tr">Нет</span></td><td><span class="tag tg">Есть</span></td><td><span class="tag tg">Есть</span></td><td><span class="tag tg">Низкая (другой сегмент)</span></td></tr>
+          <tr><td><span class="tag ty">Копейск</span></td><td>4 Сыра</td><td>Копейск</td><td>Средний</td><td><span class="tag tr">Нет</span></td><td><span class="tag tb">???</span></td><td><span class="tag tb">???</span></td><td><span class="tag tg">Низкая (рейтинг 3.8)</span></td></tr>
+          <tr><td><span class="tag tb">Benchmark</span></td><td>Буфет на Большой</td><td>Чел., Цвиллинга</td><td>3 900 ₽+</td><td><span class="tag tr">Нет</span></td><td><span class="tag tg">Сильный</span></td><td><span class="tag tg">Скидки</span></td><td><span class="tag tb">Эталон упаковки</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g2 rv rv2" style="margin-top:32px">
+      <div class="cell">
+        <span class="lbl">Где Персона выигрывает (верифицировано)</span>
+        <ul class="lst">
+          <li>15 лет истории и репутации — самый опытный игрок Копейска</li>
+          <li>Ведущий Гончаров упоминается по имени — личный бренд-актив</li>
+          <li>Кейтеринг в арсенале — редкость среди локальных</li>
+          <li>Цены ниже Челябинска при сопоставимом уровне</li>
+          <li>Парковка в центре Копейска</li>
+          <li>#1 TripAdvisor из 37 ресторанов города</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">Что нужно изучить срочно (данных нет)</span>
+        <ul class="lst">
+          <li>Посетить Уральские, Максимилианс, Палермо инкогнито</li>
+          <li>Запросить смету — понять их структуру пакетов</li>
+          <li>Изучить Избу: рейтинг 4.6 уже выше нашего 4.2</li>
+          <li>Мониторить жалобы конкурентов — это точки входа для перехвата</li>
+          <li>Проверить наличие онлайн-бронирования у конкурентов</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 06 PSYCHOTYPES -->
+<!-- ════════════════════════════════════════ -->
+<section id="psycho">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">06</span>
+      <h2 class="sh-h">Психотипы</h2>
+      <span class="sh-note">Через что продавать каждому типу людей</span>
+    </div>
+    <div class="g3 rv">
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Рационал</div><div class="psy-sub">Фактолог</div><div class="psy-desc">40–55 лет, мужчина. Читает отзывы системно. Смотрит состав пакета, цену, вместимость. Верит цифрам.</div><div class="psy-sell">Продавать: подробная смета, прайс на сайте, «15 лет / 500+ мероприятий / #1»</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Визионер</div><div class="psy-sub">Идеалист</div><div class="psy-desc">28–40 лет, женщина. Мечтает об «идеальном вечере». Смотрит фото и видео — принимает решение сердцем.</div><div class="psy-sell">Продавать: видео с реальных событий, виртуальный тур по залам, возможность кастомизации</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Эстет</div><div class="psy-sub">Имиджевик</div><div class="psy-desc">30–50 лет. Организует «чтобы все завидовали». Первый вопрос: «а фотографии будут красивыми?»</div><div class="psy-sell">Продавать: лучшие фото с мероприятий, имена ведущего и DJ, опция «закрытие ресторана»</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Гедонист</div><div class="psy-sub">Комфортник</div><div class="psy-desc">35–55 лет. Хочет вкусно поесть и расслабиться. «Главное — чтобы было вкусно и не шумно».</div><div class="psy-sell">Продавать: фото блюд крупным планом, отзывы про атмосферу, ненавязчивый сервис</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Перфекционист</div><div class="psy-sub">Контрол-фрик</div><div class="psy-desc">35–50 лет. Звонит несколько раз. Задаёт все вопросы. Хочет знать тайминг вечера поминутно.</div><div class="psy-sell">Продавать: «ваш менеджер Дмитрий», пошаговый план, согласование меню за 2 недели</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Искатель</div><div class="psy-sub">Новатор</div><div class="psy-desc">25–40 лет. Устал от стандартных банкетов. Хочет квизы, тематику, коллаборации с артистами.</div><div class="psy-sell">Продавать: анонсы нестандартных вечеров, karaoke QUIZ, тематические меню сезона</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Миссионер</div><div class="psy-sub">Альтруист</div><div class="psy-desc">Организует не для себя — для мамы, коллег, ребёнка. Счастье другого = его цель.</div><div class="psy-sell">Продавать: «ваша мама будет счастлива», кейс «незабываемый вечер для 85-летней мамы»</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Эмоционал</div><div class="psy-sub">Хайпер</div><div class="psy-desc">22–35 лет. Берёт стол спонтанно — за час до события, после видео в VK.</div><div class="psy-sell">Продавать: горящие анонсы пт/сб, розыгрыши (125 лайков — рекорд группы)</div></div>
+      <div class="psy"><div class="psy-pct">20%</div><div class="psy-name">Скептик</div><div class="psy-sub">—</div><div class="psy-desc">40–55 лет. Читает все отзывы, ищет подвох. Видел негатив про кухню — теперь сомневается.</div><div class="psy-sell">Продавать: честные ответы на негатив в публичном поле, реальные фото (не рекламные)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 07 POSITIONING -->
+<!-- ════════════════════════════════════════ -->
+<section id="positioning">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">07</span>
+      <h2 class="sh-h">Позиционирование</h2>
+      <span class="sh-note">Варианты от слабого к сильному</span>
+    </div>
+    <div class="g3 rv">
+      <div class="pos">
+        <div class="pos-grade">Слабо / шаблон</div>
+        <div class="pos-text">«Ресторан с отличной кухней и атмосферой в Копейске»</div>
+        <div class="pos-note">Так говорят все. Нет конкретики, нет причины выбрать именно Персону.</div>
+      </div>
+      <div class="pos">
+        <div class="pos-grade">Хорошо / факт</div>
+        <div class="pos-text">«15 лет. 500+ торжеств. Лучший ресторан Копейска. Банкеты под ключ»</div>
+        <div class="pos-note">Работает для рационала. Цифры вызывают доверие. Но нет уникальности.</div>
+      </div>
+      <div class="pos-best">
+        <div class="pos-grade">Рекомендованный</div>
+        <div class="pos-text">«Единственный зал в Копейске с профессиональным ведущим и DJ. Банкет под ключ: от 1 200 руб./чел»</div>
+        <div class="pos-note">Уникальность + конкретика + цена. Добавить: 15 лет + #1 TripAdvisor. Проблема: «единственный» нужно верифицировать.</div>
+      </div>
+    </div>
+
+    <div class="g3 rv rv2" style="margin-top:1px">
+      <div class="off">
+        <div class="off-type">Для банкетной аудитории</div>
+        <div class="off-text">«Один звонок — и праздник готов. Мы организуем всё: зал, кухню, ведущего, DJ»</div>
+        <div class="off-note">Снимает страх организационного стресса — главное желание сегмента</div>
+      </div>
+      <div class="off">
+        <div class="off-type">Для молодёжи / выпускных</div>
+        <div class="off-text">«Выпускной, которым вы будете хвалиться — от 1 500 руб./чел, DJ включён»</div>
+        <div class="off-note">Говорит языком результата, а не перечисления услуг</div>
+      </div>
+      <div class="off">
+        <div class="off-type">Антиоффер — отсев слабых клиентов</div>
+        <div class="off-text">«Если хотите ведущего за 3 000 и стол за 800 руб./чел — мы не ваш вариант»</div>
+        <div class="off-note">Отсекает неплатёжеспособных, притягивает тех, кто ценит уровень</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 08 TRAFFIC -->
+<!-- ════════════════════════════════════════ -->
+<section id="traffic">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">08</span>
+      <h2 class="sh-h">Трафик</h2>
+      <span class="sh-note">Что есть сейчас и чего критически не хватает</span>
+    </div>
+
+    <div class="g4 rv">
+      <div class="trf"><div class="trf-pct">55%</div><div class="trf-name">Сарафан</div><div class="trf-desc">Рекомендации, цикличность семей. Банкет → следующий банкет через 2–3 года.</div><span class="temp t-h">Горячий</span></div>
+      <div class="trf"><div class="trf-pct">25%</div><div class="trf-name">Яндекс.Карты / 2ГИС</div><div class="trf-desc">Органический поиск «рестораны Копейск». Карточка работает, но не оптимизирована.</div><span class="temp t-w">Тёплый</span></div>
+      <div class="trf"><div class="trf-pct">15%</div><div class="trf-name">ВКонтакте</div><div class="trf-desc">7K подписчиков, органика. Видео с шоу дают 34–125 лайков — самый вирусный контент.</div><span class="temp t-w">Тёплый</span></div>
+      <div class="trf"><div class="trf-pct">5%</div><div class="trf-name">Прямые обращения</div><div class="trf-desc">Постоянные клиенты, которые знают номер. LTV максимальный из всех каналов.</div><span class="temp t-h">Горячий</span></div>
+    </div>
+
+    <div style="margin-top:1px">
+      <div class="g4 rv rv1">
+        <div class="cell"><span class="lbl" style="color:var(--red)">Нет, но надо сейчас</span><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px">Яндекс.Директ</div><div style="font-size:12px;color:var(--ink2);line-height:1.6">Запросы: «банкет Копейск», «свадьба Копейск», «юбилей ресторан». Гипотеза: 30–50 заявок в месяц при бюджете 15–25 тыс. руб. Запускать только после сайта.</div></div>
+        <div class="cell"><span class="lbl" style="color:var(--red)">Нет, но надо сейчас</span><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px">ЗАГС-партнёрство</div><div style="font-size:12px;color:var(--ink2);line-height:1.6">Флаеры парам, подающим заявление. Прямой выход на свадебную аудиторию в момент принятия решения. Бесплатно или почти бесплатно.</div></div>
+        <div class="cell"><span class="lbl" style="color:var(--red)">Нет, но надо сейчас</span><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px">VK таргет с видео</div><div style="font-size:12px;color:var(--ink2);line-height:1.6">Гео: Копейск + Металлургический р-н Челябинска. Возраст 25–55. Показывать видео с пятничной шоу-программы. Цель: узнаваемость + заявки.</div></div>
+        <div class="cell"><span class="lbl" style="color:var(--gold)">Нет, но норм</span><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px">Свадебные агентства</div><div style="font-size:12px;color:var(--ink2);line-height:1.6">Реферальный % за привлечённый банкет. Агентства Копейска и Металлургического р-на Челябинска. Пассивный канал с качественной аудиторией.</div></div>
+      </div>
+    </div>
+
+    <!-- Chart: traffic potential -->
+    <div class="g2 rv rv2" style="margin-top:32px">
+      <div class="cell">
+        <div class="chart-title">Потенциальный рост трафика по каналам (+12 мес.)</div>
+        <canvas id="chartTrafficGrowth"></canvas>
+      </div>
+      <div class="cell">
+        <div class="chart-title">Гео-покрытие аудитории</div>
+        <canvas id="chartGeo"></canvas>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Копейск (180 тыс. чел.)</span><span style="font-family:var(--mono)">68%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Челябинск (1.1 млн чел.)</span><span style="font-family:var(--mono)">22%</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Область (другие города)</span><span style="font-family:var(--mono)">10%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 09 ECONOMICS -->
+<!-- ════════════════════════════════════════ -->
+<section id="economics">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">09</span>
+      <h2 class="sh-h">Экономика бизнеса</h2>
+      <span class="sh-note">Ключевые метрики с пояснениями</span>
+    </div>
+
+    <div class="econ rv">
+      <div class="econ-c"><span class="econ-l">LTV клиента / 5 лет</span><div class="econ-n">200–300К</div><div class="econ-note">Банкет + повторные банкеты + ланчи + вечера за 5 лет от одного клиента</div></div>
+      <div class="econ-c"><span class="econ-l">CAC цель</span><div class="econ-n">≤2 500₽</div><div class="econ-note">Стоимость привлечения одного банкетного клиента через Директ — реалистично при LTV 200K</div></div>
+      <div class="econ-c"><span class="econ-l">Ср. банкет</span><div class="econ-n">90–300К</div><div class="econ-note">Зависит от числа гостей (20–80 чел.) и выбранного меню</div></div>
+      <div class="econ-c"><span class="econ-l">ROMI таргета</span><div class="econ-n">≥300%</div><div class="econ-note">При LTV 200К и CAC 2 500 руб. — реклама окупается в 80 раз</div></div>
+    </div>
+
+    <!-- Chart economics -->
+    <div class="g2 rv rv2" style="margin-top:1px">
+      <div class="cell">
+        <div class="chart-title">LTV vs CAC — почему реклама выгодна</div>
+        <canvas id="chartLTV"></canvas>
+        <div style="margin-top:12px;font-size:12px;color:var(--ink3);line-height:1.6">Синяя линия — рост дохода от клиента со временем. Красная точка — стоимость его привлечения. Чем быстрее пересечение — тем лучше бизнес.</div>
+      </div>
+      <div class="cell">
+        <div class="chart-title">Воронка банкетного клиента (оценочно)</div>
+        <canvas id="chartFunnel"></canvas>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Нашли / увидели</span><span style="font-family:var(--mono)">1000</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Написали / позвонили</span><span style="font-family:var(--mono)">80</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Приехали смотреть зал</span><span style="font-family:var(--mono)">30</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink2)"><span>Забронировали</span><span style="font-family:var(--mono)">12</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g2 rv rv2" style="margin-top:32px">
+      <div class="cell">
+        <span class="lbl">KPI маркетинга — что замерять</span>
+        <ul class="lst">
+          <li>Трафик по каналам — Яндекс.Метрика на сайт</li>
+          <li>Конверсия: просмотр → звонок → просмотр зала → бронь</li>
+          <li>Средний чек банкета — рост на 10% за 6 мес.</li>
+          <li>Рейтинг Яндекс.Карты — цель ≥4.5 за 6 мес.</li>
+          <li>Новых отзывов — ≥8 в месяц через QR-код</li>
+          <li>CAC по каналам — считать ежемесячно</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <span class="lbl">KPI операционки — что замерять</span>
+        <ul class="lst">
+          <li>NPS после банкета — опрос на следующий день</li>
+          <li>Жалобы на кухню — цель ≤5% от визитов</li>
+          <li>Время ответа в WhatsApp — цель ≤15 минут</li>
+          <li>Скорость подачи ланча — цель ≤25 минут</li>
+          <li>Конверсия звонок → просмотр зала — цель ≥40%</li>
+          <li>Возврат клиентов — завести журнал броней</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 10 ROADMAP -->
+<!-- ════════════════════════════════════════ -->
+<section id="roadmap">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">10</span>
+      <h2 class="sh-h">Роадмап</h2>
+      <span class="sh-note">Последовательность критична. Не менять порядок.</span>
+    </div>
+    <div class="rm3 rv">
+      <div class="rm-col-dk">
+        <div class="rm-period">0–30 дней / Убрать потери</div>
+        <div class="rm-h">Сначала — убрать то, что теряет клиентов</div>
+        <div class="rm-item" data-n="01">Ответить на ВСЕ отзывы: Яндекс.Карты, 2ГИС, TripAdvisor, Zoon</div>
+        <div class="rm-item" data-n="02">Обновить фото в Яндекс.Бизнес: залы, блюда, программа</div>
+        <div class="rm-item" data-n="03">Добавить цены «от» в описание карточки — сразу</div>
+        <div class="rm-item" data-n="04">QR-код на чеке → отзыв → скидка 5%</div>
+        <div class="rm-item" data-n="05">WhatsApp Business: шаблоны, ответ ≤15 мин.</div>
+        <div class="rm-item" data-n="06">Снять 5–7 видео с пятничной программы → VK</div>
+        <div class="rm-item" data-n="07">Скрипт продаж для администратора на входящий звонок</div>
+        <div class="rm-item" data-n="08">Аудит кухни: убрать позиции из негатива в отзывах</div>
+      </div>
+      <div class="rm-col">
+        <div class="rm-period">30–60 дней / Упаковка</div>
+        <div class="rm-h">Сделать так, чтобы клиент мог выбрать без звонка</div>
+        <div class="rm-item" data-n="01">Сайт на Tilda: залы + цены + форма заявки + отзывы + карта</div>
+        <div class="rm-item" data-n="02">Банкетное меню с фото на сайте</div>
+        <div class="rm-item" data-n="03">Партнёрство с ЗАГС Копейска: флаеры молодожёнам</div>
+        <div class="rm-item" data-n="04">1–2 свадебных агентства: реферальный % за банкет</div>
+        <div class="rm-item" data-n="05">Партнёр-фотограф: скидка для гостей ресторана</div>
+        <div class="rm-item" data-n="06">Программа лояльности MVP: карточка гостя, кэшбэк 3%</div>
+        <div class="rm-item" data-n="07">Изучить Уральские, Максимилианс, Палермо — посетить</div>
+      </div>
+      <div class="rm-col">
+        <div class="rm-period">60–90 дней / Трафик</div>
+        <div class="rm-h">Только после сайта — запускать платный трафик</div>
+        <div class="rm-item" data-n="01">Яндекс.Директ: «банкет», «свадьба», «юбилей» + Копейск</div>
+        <div class="rm-item" data-n="02">Тест: 15–25 тыс. руб./мес., цель 10 заявок за месяц</div>
+        <div class="rm-item" data-n="03">VK таргет: гео + интересы + видео с шоу</div>
+        <div class="rm-item" data-n="04">Яндекс.Метрика + UTM-метки на все ссылки</div>
+        <div class="rm-item" data-n="05">Таблица лидов: откуда пришёл / результат / конверсия</div>
+        <div class="rm-item" data-n="06">WhatsApp-рассылка базе через 6–12 мес. после банкета</div>
+        <div class="rm-item" data-n="07">TikTok / Reels с вечеров — виральный охват молодёжи</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 11 BLOCKERS -->
+<!-- ════════════════════════════════════════ -->
+<section id="blockers">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">11</span>
+      <h2 class="sh-h">Что блокирует рост</h2>
+      <span class="sh-note">В этом порядке — не перепрыгивать</span>
+    </div>
+    <div class="g2 rv" style="background:var(--line);border:1px solid var(--line)">
+      <div class="blk"><div class="blk-num">01</div><div><div class="blk-name">Кухня нестабильна <span class="tag tr" style="margin-left:6px">Критично</span></div><div class="blk-desc">~30% отзывов содержат критику кухни. Деньги на рекламу до фикса кухни = ускорение репутационного провала. Каждый новый клиент с рекламы — потенциальный автор нового негатива.</div></div></div>
+      <div class="blk"><div class="blk-num">02</div><div><div class="blk-name">Сайта нет <span class="tag tr" style="margin-left:6px">Критично</span></div><div class="blk-desc">100% платного трафика некуда вести. Конкурент с сайтом и ценами забирает клиентов, которые уже готовы бронировать, но не хотят звонить ради ценника.</div></div></div>
+      <div class="blk"><div class="blk-num">03</div><div><div class="blk-name">Цены — тайна <span class="tag tr" style="margin-left:6px">Высокий</span></div><div class="blk-desc">«Напишите цену, это же не сложно» — 5 лайков под комментарием. Непрозрачность убивает 20–30% потенциальных клиентов без единого контакта.</div></div></div>
+      <div class="blk"><div class="blk-num">04</div><div><div class="blk-name">Скрытые платежи <span class="tag tr" style="margin-left:6px">Высокий</span></div><div class="blk-desc">Шоу-программа включена в чек как «алкоголь» — несколько жалоб в отзывах. Клиент чувствует себя обманутым и пишет об этом публично.</div></div></div>
+      <div class="blk"><div class="blk-num">05</div><div><div class="blk-name">Нет программы лояльности <span class="tag ty" style="margin-left:6px">Средний</span></div><div class="blk-desc">Конкуренты: Родня — 12–15% кэшбэк, Хачапури — 3–7%. Постоянные клиенты не имеют стимула выбирать Персону снова.</div></div></div>
+      <div class="blk"><div class="blk-num">06</div><div><div class="blk-name">Геолокация: не Челябинск <span class="tag ty" style="margin-left:6px">Структурный</span></div><div class="blk-desc">Копейск — 180 тыс. чел. против 1.1 млн в Челябинске. Нет спонтанного потока. Только плановый трафик (банкеты, корпоративы, ланч). Пешком не придут. Компенсация: кейтеринг + выездные события.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 12 HYPOTHESES -->
+<!-- ════════════════════════════════════════ -->
+<section id="hypotheses">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">12</span>
+      <h2 class="sh-h">Гипотезы</h2>
+      <span class="sh-note">Impact / Effort — приоритет по ROI</span>
+    </div>
+    <div class="hyp-scroll rv">
+      <table class="hyp">
+        <thead>
+          <tr><th>#</th><th>Гипотеза</th><th>Эффект</th><th>Усилие</th><th>Срок</th><th>Статус</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td>Ответить на все отзывы на всех площадках</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>3 дня</td><td><span class="tag tg">Делать сейчас</span></td></tr>
+          <tr><td>02</td><td>Добавить цены «от» в карточку Яндекс.Бизнес</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>1 день</td><td><span class="tag tg">Делать сейчас</span></td></tr>
+          <tr><td>03</td><td>QR-код на чеке → отзыв → скидка 5%</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>1 неделя</td><td><span class="tag tg">Делать сейчас</span></td></tr>
+          <tr><td>04</td><td>5–7 видео с пятничной программы → VK с анонсами</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>2 недели</td><td><span class="tag tg">Делать сейчас</span></td></tr>
+          <tr><td>05</td><td>Сайт на Tilda: залы + цены + форма заявки + отзывы</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot k"></div><div class="dot"></div><div class="dot"></div></div></td><td>3–4 нед.</td><td><span class="tag ty">Следующим</span></td></tr>
+          <tr><td>06</td><td>Скрипт продаж для администратора</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>2 нед.</td><td><span class="tag ty">Следующим</span></td></tr>
+          <tr><td>07</td><td>Партнёрство с ЗАГС Копейска</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>2 нед.</td><td><span class="tag ty">Следующим</span></td></tr>
+          <tr><td>08</td><td>Яндекс.Директ по банкетным запросам</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot k"></div><div class="dot"></div><div class="dot"></div></div></td><td>После сайта</td><td><span class="tag ty">После сайта</span></td></tr>
+          <tr><td>09</td><td>Аудит кухни + стандартизация рецептур</td><td><div class="dots"><div class="dot r"></div><div class="dot r"></div><div class="dot r"></div><div class="dot r"></div><div class="dot r"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot k"></div><div class="dot k"></div><div class="dot"></div></div></td><td>1–3 мес.</td><td><span class="tag tr">Параллельно всему</span></td></tr>
+          <tr><td>10</td><td>Программа лояльности MVP: кэшбэк 3%</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>1 мес.</td><td><span class="tag ty">Следующим</span></td></tr>
+          <tr><td>11</td><td>TikTok / Reels с вечеров — виральный охват</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>1 мес.</td><td><span class="tag ty">Следующим</span></td></tr>
+          <tr><td>12</td><td>B2B аутрич: звонки компаниям Копейска в ноябре</td><td><div class="dots"><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot g"></div><div class="dot"></div></div></td><td><div class="dots"><div class="dot k"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></td><td>Ноябрь</td><td><span class="tag ty">Запланировать</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 13 SCALING -->
+<!-- ════════════════════════════════════════ -->
+<section id="scaling">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">13</span>
+      <h2 class="sh-h">Сценарии роста</h2>
+      <span class="sh-note">Куда может вырасти бизнес</span>
+    </div>
+    <div class="g4 rv">
+      <div class="scale"><div class="scale-letter">A</div><div class="scale-name">Event-агентство</div><div class="scale-desc">Персона + фотограф + декоратор + флорист = «одно окно» для торжества в Копейске. Кратный рост среднего чека без нового зала. Начинать с 1–2 партнёров.</div></div>
+      <div class="scale"><div class="scale-letter">B</div><div class="scale-name">Кейтеринг</div><div class="scale-desc">Снимает проблему геолокации. ЧМК, КГОК, муниципальные мероприятия. Выездные свадьбы. Запускать только после стабильной кухни.</div></div>
+      <div class="scale"><div class="scale-letter">C</div><div class="scale-name">Регулярные события</div><div class="scale-desc">Квизы, дегустации, тематические вечера по абонементу. Стабильный поток вне банкетного сезона. Начинать с 1 события в месяц.</div></div>
+      <div class="scale"><div class="scale-letter">D</div><div class="scale-name">B2G канал</div><div class="scale-desc">Обслуживание муниципальных мероприятий Копейска, официальных ужинов. Город маленький — администрации нужна площадка.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 14 OPEN QUESTIONS -->
+<!-- ════════════════════════════════════════ -->
+<section id="questions">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">14</span>
+      <h2 class="sh-h">Открытые вопросы</h2>
+      <span class="sh-note">Данных нет — анализ можно углубить</span>
+    </div>
+    <div class="g2 rv">
+      <div class="q"><div class="q-n">01</div><div class="q-text">Сколько банкетов в месяц в среднем? Какова фактическая заполняемость залов?</div><div class="q-why">Нужно для расчёта upside: что даст +30% заполняемости в деньгах</div><div class="q-action">Попросить журнал броней за последние 6 месяцев</div></div>
+      <div class="q"><div class="q-n">02</div><div class="q-text">Почему кухня получает негатив с 2022–2023 года? Что изменилось?</div><div class="q-why">Динамика отзывов показывает ухудшение — важно понять причину</div><div class="q-action">Сравнить отзывы до 2022 и после, найти паттерн жалоб</div></div>
+      <div class="q"><div class="q-n">03</div><div class="q-text">Есть ли база контактов клиентов за 15 лет (телефон, дата события)?</div><div class="q-why">Рассылка по базе может дать 5–10 банкетов без рекламных вложений</div><div class="q-action">Если есть — сделать WhatsApp-рассылку через 6–12 мес. после события</div></div>
+      <div class="q"><div class="q-n">04</div><div class="q-text">Как работают Уральские / Максимилианс / Палермо — цены, меню, пакеты?</div><div class="q-why">Главные конкуренты по банкетам — данных по ним нет совсем</div><div class="q-action">Посетить инкогнито, запросить смету, изучить сайт и отзывы</div></div>
+      <div class="q"><div class="q-n">05</div><div class="q-text">Какой процент клиентов возвращается на следующее событие?</div><div class="q-why">Если LTV высокий — оправдывает более агрессивный CAC на привлечение</div><div class="q-action">Начать вести журнал: имя, дата события, тип, телефон</div></div>
+      <div class="q"><div class="q-n">06</div><div class="q-text">Что за ресторан Изба в Копейске с рейтингом 4.6?</div><div class="q-why">Рейтинг выше нашего 4.2 — угроза в органической выдаче TripAdvisor</div><div class="q-action">Найти в 2ГИС, изучить формат, посетить лично</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 15 GLOSSARY -->
+<!-- ════════════════════════════════════════ -->
+<section id="glossary">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">15</span>
+      <h2 class="sh-h">Словарь терминов</h2>
+      <span class="sh-note">Что значит каждое слово из анализа</span>
+    </div>
+    <div class="g3 rv">
+      <div class="glos-item"><div class="glos-term">LTV</div><div class="glos-full">Lifetime Value — пожизненная ценность клиента</div><div class="glos-desc">Сколько денег один клиент принесёт вам за всё время сотрудничества — не за один визит, а за годы.</div><div class="glos-example">Семья пришла на юбилей в 2020-м, потом на свадьбу дочери в 2023-м, потом на ДР каждый год — итого 300 000 руб. за 5 лет. Это их LTV.</div></div>
+      <div class="glos-item"><div class="glos-term">CAC</div><div class="glos-full">Customer Acquisition Cost — стоимость привлечения клиента</div><div class="glos-desc">Сколько вы потратили на рекламу, чтобы один человек стал вашим клиентом.</div><div class="glos-example">Потратили 25 000 руб. на Директ, получили 10 заявок, из них 3 забронировали банкет. CAC = 25 000 / 3 = 8 333 руб. При LTV 300К — это выгодно.</div></div>
+      <div class="glos-item"><div class="glos-term">ROMI</div><div class="glos-full">Return on Marketing Investment — возврат на маркетинговые инвестиции</div><div class="glos-desc">Сколько рублей заработали на каждый рубль, вложенный в рекламу.</div><div class="glos-example">Вложили 25 000 руб. в рекламу, заработали 3 банкета по 100 000 = 300 000. ROMI = (300К–25К)/25К × 100% = 1 100%.</div></div>
+      <div class="glos-item"><div class="glos-term">КЭВ</div><div class="glos-full">Ключевой этап воронки — точка, после которой клиент почти гарантированно купит</div><div class="glos-desc">Для ресторана — это просмотр зала. Если человек приехал и увидел зал вживую — вероятность бронирования 60–80%.</div><div class="glos-example">Позвонил → договорились на просмотр → приехал → забронировал. Просмотр зала = КЭВ.</div></div>
+      <div class="glos-item"><div class="glos-term">Директ</div><div class="glos-full">Яндекс.Директ — платная реклама в поиске Яндекса</div><div class="glos-desc">Вы платите, чтобы ваш сайт показывался первым, когда человек ищет «банкет Копейск» в Яндексе.</div><div class="glos-example">Кто-то вводит «ресторан для юбилея Копейск» → первая ссылка — ваш сайт (помечена «Реклама»).</div></div>
+      <div class="glos-item"><div class="glos-term">NPS</div><div class="glos-full">Net Promoter Score — индекс лояльности клиентов</div><div class="glos-desc">Один вопрос после визита: «По шкале 0–10, насколько вы порекомендуете нас друзьям?» 9–10 = фанаты, 0–6 = критики.</div><div class="glos-example">Из 10 гостей: 6 поставили 9–10, 2 поставили 7–8, 2 поставили 0–6. NPS = (6–2)/10 × 100 = +40. Хороший результат.</div></div>
+      <div class="glos-item"><div class="glos-term">CJM</div><div class="glos-full">Customer Journey Map — карта пути клиента</div><div class="glos-desc">Схема того, как клиент идёт от «не знал о ресторане» до «стал постоянным». На каждом шаге он может уйти.</div><div class="glos-example">Поиск в Яндексе → чтение отзывов → звонок → просмотр зала → бронирование → банкет → отзыв → возврат.</div></div>
+      <div class="glos-item"><div class="glos-term">Трипваер</div><div class="glos-full">Tripwire — дешёвый первый шаг перед основной покупкой</div><div class="glos-desc">Небольшая услуга или продукт, который клиент покупает первым — чтобы познакомиться и начать доверять.</div><div class="glos-example">Пришёл на бизнес-ланч за 550 руб. → понравилось → через год заказал корпоратив на 150 000 руб.</div></div>
+      <div class="glos-item"><div class="glos-term">UTM-метки</div><div class="glos-full">Utm-параметры — пометки в ссылках для аналитики</div><div class="glos-desc">Специальные добавки к ссылке, которые позволяют понять — из какой рекламы пришёл клиент.</div><div class="glos-example">Ссылка «сайт.ru?utm_source=vk» показывает, что клиент пришёл с ВКонтакте, а не из Яндекса.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- 16 SOURCES -->
+<!-- ════════════════════════════════════════ -->
+<section id="sources">
+  <div class="W">
+    <div class="sh rv">
+      <span class="sh-num">16</span>
+      <h2 class="sh-h">Источники</h2>
+      <span class="sh-note">Откуда взята информация — всё верифицировано</span>
+    </div>
+    <div class="g3 rv">
+      <div class="src-item"><div class="src-name">TripAdvisor — Персона</div><div class="src-url"><a href="https://www.tripadvisor.ru/Restaurant_Review-g791962-d4437960-Reviews-Persona-Kopeysk_Chelyabinsk_Oblast.html" target="_blank">tripadvisor.ru → Персона Копейск</a></div><div class="src-note">23 отзыва, рейтинг 4.2, #1 из 37 ресторанов Копейска</div></div>
+      <div class="src-item"><div class="src-name">Яндекс.Карты — Персона</div><div class="src-url"><a href="https://yandex.ru/maps/org/persona/1097069891/" target="_blank">yandex.ru/maps → Персона Копейск</a></div><div class="src-note">Прайс-лист, контакты, отзывы, режим работы</div></div>
+      <div class="src-item"><div class="src-name">Zoon.ru — Персона</div><div class="src-url"><a href="https://zoon.ru/chelyabinsk/cafe/" target="_blank">zoon.ru → рестораны Копейска</a></div><div class="src-note">50+ отзывов, рейтинг, детальные оценки</div></div>
+      <div class="src-item"><div class="src-name">ВКонтакте — официальная группа</div><div class="src-url"><a href="https://vk.com/restoranpersona" target="_blank">vk.com/restoranpersona</a></div><div class="src-note">7K подписчиков, посты, вовлечённость, анонсы</div></div>
+      <div class="src-item"><div class="src-name">Wayback Machine — сайт ресторана</div><div class="src-url"><a href="https://web.archive.org/web/*/ресторанперсона.рф" target="_blank">web.archive.org → ресторанперсона.рф</a></div><div class="src-note">Архивы сайта 2013–2019, история позиционирования</div></div>
+      <div class="src-item"><div class="src-name">Афиша.ru — Персона</div><div class="src-url"><a href="https://www.afisha.ru/chelyabinsk/restaurant/persona-kopeysk/" target="_blank">afisha.ru → Персона</a></div><div class="src-note">Описание, средний чек 1 000–3 000 руб., часы работы</div></div>
+      <div class="src-item"><div class="src-name">Родня — конкурент (бенчмарк)</div><div class="src-url"><a href="https://zooнру/chelyabinsk/bar/rodnya/" target="_blank">zoon.ru → Родня Челябинск</a></div><div class="src-note">50+ отзывов, программа лояльности 12–15%</div></div>
+      <div class="src-item"><div class="src-name">Буфет на Большой — конкурент (бенчмарк)</div><div class="src-url"><a href="https://bufetnabolsoy.ru" target="_blank">bufetnabolsoy.ru</a></div><div class="src-note">6 залов, сайт на Tilda, камерная свадьба от 450К</div></div>
+      <div class="src-item"><div class="src-name">Данные маркетолога ресторана</div><div class="src-url"><a href="#">Переписка с Яной С. — апрель 2026</a></div><div class="src-note">Реальные конкуренты, средний чек, позиционирование по словам самого ресторана</div></div>
+    </div>
+
+    <div class="warn-box rv rv1" style="margin-top:32px">
+      <p><strong>Важно:</strong> Данные по Яндекс.Еда (доставка от Персоны) — <strong>не подтверждены</strong> и убраны из анализа. Данные по BAHROMA — не по Копейску, убраны. Вся информация в анализе основана только на верифицированных источниках.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ════════════════════════════════════════ -->
+<div class="W">
+  <div class="foot rv">
+    <div class="foot-l">
+      <strong>Источники анализа</strong>
+      Яндекс.Карты · 2ГИС · TripAdvisor · Zoon · ВКонтакте (7K подписчиков)<br>
+      Wayback Machine · Афиша.ru · Отзывы 150+ гостей<br>
+      Данные маркетолога Яны · Конкуренты: Родня, Буфет, Хачапури, Помидор
+    </div>
+    <div class="author-card">
+      <div class="author-title">Разбор подготовил</div>
+      <div class="author-name">Филипп Шершиков</div>
+      <div class="author-role">Веб-дизайнер · Маркетолог</div>
+      <div class="author-links">
+        <a href="https://t.me/shershikoff" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/></svg>
+          @shershikoff <span>Telegram</span>
+        </a>
+        <a href="tel:+79123177969">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.48a16 16 0 006.61 6.61l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+          +7 912 317-79-69 <span>Телефон</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── THEME ───
+const html = document.documentElement;
+const btn = document.getElementById('themeBtn');
+let theme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', theme);
+btn.addEventListener('click', () => {
+  theme = theme === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  updateCharts();
+});
+
+// ─── SCROLL PROGRESS ───
+const prog = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (window.scrollY / h * 100) + '%';
+}, {passive: true});
+
+// ─── REVEAL ON SCROLL ───
+const revEls = document.querySelectorAll('.rv');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold: 0.06, rootMargin: '0px 0px -30px 0px'});
+revEls.forEach(el => revObs.observe(el));
+
+// ─── BAR FILLS ───
+const bars = document.querySelectorAll('.bar-fill');
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.style.width = e.target.dataset.w + '%';
+  });
+}, {threshold: 0.5});
+bars.forEach(b => barObs.observe(b));
+
+// ─── NAV ACTIVE ───
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+const mobAs = document.querySelectorAll('.mob-nav a');
+const mobNav = document.getElementById('mobNav');
+function updateMobileNavHint(){
+  if(mobNav) mobNav.classList.toggle('is-scrolled', mobNav.scrollLeft > 8);
+}
+mobNav?.addEventListener('scroll', updateMobileNavHint, {passive:true});
+updateMobileNavHint();
+const navObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const id = e.target.id;
+      navAs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+id));
+      mobAs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+id));
+      const activeMobile = [...mobAs].find(a => a.classList.contains('on'));
+      if(activeMobile && mobNav){
+        const left = activeMobile.offsetLeft - mobNav.clientWidth / 2 + activeMobile.offsetWidth / 2;
+        mobNav.scrollTo({left: Math.max(0,left), behavior:'smooth'});
+      }
+    }
+  });
+}, {threshold: 0.3});
+secs.forEach(s => navObs.observe(s));
+
+// ─── SMOOTH SCROLL ───
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+// ─── CHARTS ───
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.font.size = 10;
+
+function getThemeColors() {
+  const s = getComputedStyle(document.documentElement);
+  return {
+    ink: s.getPropertyValue('--ink').trim(),
+    ink2: s.getPropertyValue('--ink2').trim(),
+    ink3: s.getPropertyValue('--ink3').trim(),
+    gold: s.getPropertyValue('--gold').trim(),
+    red: s.getPropertyValue('--red').trim(),
+    green: s.getPropertyValue('--green').trim(),
+    blue: s.getPropertyValue('--blue').trim(),
+    bg: s.getPropertyValue('--bg').trim(),
+    bg2: s.getPropertyValue('--bg2').trim(),
+    line: s.getPropertyValue('--line').trim(),
+  };
+}
+
+let charts = {};
+
+function initCharts() {
+  const c = getThemeColors();
+  const tick = { color: c.ink3 };
+  const grid = { color: c.line, drawBorder: false };
+
+  // Traffic donut
+  if(charts.traffic) charts.traffic.destroy();
+  charts.traffic = new Chart(document.getElementById('chartTraffic'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [55, 25, 15, 5],
+        backgroundColor: [c.gold, c.blue, c.green, c.ink3],
+        borderWidth: 0,
+        hoverOffset: 4,
+        cutout: '72%'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ['Сарафан','Карты/2ГИС','ВКонтакте','Прямые'][ctx.dataIndex] + ': ' + ctx.parsed + '%'
+          }
+        }
+      },
+      animation: { animateRotate: true, duration: 1200 }
+    }
+  });
+  document.getElementById('trafficVal').style.color = c.ink;
+
+  // Revenue bar
+  if(charts.revenue) charts.revenue.destroy();
+  charts.revenue = new Chart(document.getElementById('chartRevenue'), {
+    type: 'bar',
+    data: {
+      labels: ['Банкеты','Вечера пт/сб','Ланч','Прочее'],
+      datasets: [{
+        data: [65, 20, 10, 5],
+        backgroundColor: [c.gold, c.blue, c.green, c.ink3],
+        borderRadius: 3,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ctx.parsed.y + '%' }}
+      },
+      scales: {
+        y: { grid, ticks: {...tick, callback: v => v+'%' }, max: 80 },
+        x: { grid: { display: false }, ticks: tick }
+      },
+      animation: { duration: 1000 }
+    }
+  });
+
+  // Reviews donut
+  if(charts.reviews) charts.reviews.destroy();
+  charts.reviews = new Chart(document.getElementById('chartReviews'), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [55, 15, 30],
+        backgroundColor: [c.green, c.gold, c.red],
+        borderWidth: 0,
+        cutout: '72%'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ['Позитив','Нейтрал','Негатив'][ctx.dataIndex] + ': ' + ctx.parsed + '%'
+          }
+        }
+      },
+      animation: { animateRotate: true, duration: 1200 }
+    }
+  });
+
+  // Traffic growth bar
+  if(charts.trafficGrowth) charts.trafficGrowth.destroy();
+  charts.trafficGrowth = new Chart(document.getElementById('chartTrafficGrowth'), {
+    type: 'bar',
+    data: {
+      labels: ['Сарафан','Карты/2ГИС','ВКонтакте','Директ','ЗАГС','Таргет VK'],
+      datasets: [
+        { label: 'Сейчас', data: [55,25,15,0,0,5], backgroundColor: c.ink3, borderRadius: 2 },
+        { label: '+12 мес.', data: [60,35,25,30,15,20], backgroundColor: c.gold, borderRadius: 2 }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: c.ink2, font: { size: 10 } } } },
+      scales: {
+        y: { grid, ticks: {...tick, callback: v => v+'%' } },
+        x: { grid: { display: false }, ticks: tick }
+      },
+      animation: { duration: 1000 }
+    }
+  });
+
+  // Geo donut
+  if(charts.geo) charts.geo.destroy();
+  charts.geo = new Chart(document.getElementById('chartGeo'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Копейск','Челябинск','Область'],
+      datasets: [{
+        data: [68, 22, 10],
+        backgroundColor: [c.gold, c.blue, c.ink3],
+        borderWidth: 0,
+        cutout: '60%'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'right', labels: { color: c.ink2, font: { size: 10 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.parsed + '%' } }
+      },
+      animation: { animateRotate: true, duration: 1200 }
+    }
+  });
+
+  // LTV line chart
+  if(charts.ltv) charts.ltv.destroy();
+  charts.ltv = new Chart(document.getElementById('chartLTV'), {
+    type: 'line',
+    data: {
+      labels: ['0','6 мес','1 год','2 года','3 года','5 лет'],
+      datasets: [
+        {
+          label: 'Доход от клиента (руб.)',
+          data: [0, 90000, 120000, 160000, 200000, 290000],
+          borderColor: c.gold, backgroundColor: c.gold+'22',
+          tension: 0.4, fill: true, pointRadius: 4, pointBackgroundColor: c.gold
+        },
+        {
+          label: 'Стоимость привлечения (CAC)',
+          data: [2500, 2500, 2500, 2500, 2500, 2500],
+          borderColor: c.red, borderDash: [5,5],
+          tension: 0, fill: false, pointRadius: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: c.ink2, font: { size: 10 }, boxWidth: 12 } },
+        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString('ru') + ' ₽' } }
+      },
+      scales: {
+        y: { grid, ticks: {...tick, callback: v => (v/1000).toFixed(0)+'K' } },
+        x: { grid: { display: false }, ticks: tick }
+      },
+      animation: { duration: 1000 }
+    }
+  });
+
+  // Funnel horizontal bar
+  if(charts.funnel) charts.funnel.destroy();
+  charts.funnel = new Chart(document.getElementById('chartFunnel'), {
+    type: 'bar',
+    data: {
+      labels: ['Нашли','Написали','Просмотр зала','Забронировали'],
+      datasets: [{
+        data: [1000, 80, 30, 12],
+        backgroundColor: [c.ink3, c.blue, c.gold, c.green],
+        borderRadius: 3,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid, ticks: tick },
+        y: { grid: { display: false }, ticks: tick }
+      },
+      animation: { duration: 900 }
+    }
+  });
+}
+
+function updateCharts() {
+  setTimeout(initCharts, 50);
+}
+
+// Init charts when section visible
+const chartSec = document.getElementById('overview');
+const chartObs = new IntersectionObserver(entries => {
+  if(entries[0].isIntersecting) { initCharts(); chartObs.disconnect(); }
+}, {threshold: 0.1});
+chartObs.observe(chartSec);
+</script>
+</body>
+</html>
